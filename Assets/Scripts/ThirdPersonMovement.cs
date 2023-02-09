@@ -11,6 +11,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
+    public ParticleSystem jetpack;
     float turnSmoothVelocity;
     float velocityY;
 
@@ -38,11 +39,18 @@ public class ThirdPersonMovement : MonoBehaviour
             }
         }
 
+        if (Input.GetKey(KeyCode.E)) {
+            velocityY = 2f;
+            jetpack.Play();
+        } else {
+            jetpack.Stop();
+        }
+
         if (controller.isGrounded && Input.GetButtonDown("Jump"))
         {
             float jumpVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
             velocityY = jumpVelocity;
-        }
+        } 
 
         velocityY += gravity * Time.deltaTime;
         controller.Move(Vector3.up * velocityY * Time.deltaTime);
