@@ -38,52 +38,48 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("Input Magnitude", inputMagnitude, 0.05f, Time.deltaTime);
 
-        float speed = inputMagnitude * maximumSpeed;
+        // float speed = inputMagnitude * maximumSpeed;
         movementDirection.Normalize();
 
-        ySpeed += Physics.gravity.y * Time.deltaTime;
+        // ySpeed += Physics.gravity.y * Time.deltaTime;
 
-        if (characterController.isGrounded)
-        {
-            lastGroundedTime = Time.time;
-        }
+        // if (characterController.isGrounded)
+        // {
+        //     lastGroundedTime = Time.time;
+        // }
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpButtonPressedTime = Time.time;
-        }
+        // if (Input.GetButtonDown("Jump"))
+        // {
+        //     jumpButtonPressedTime = Time.time;
+        // }
 
-        if (Time.time - lastGroundedTime <= jumpButtonGracePeriod)
-        {
-            characterController.stepOffset = originalStepOffset;
-            ySpeed = -0.5f;
+        // if (Time.time - lastGroundedTime <= jumpButtonGracePeriod)
+        // {
+        //     characterController.stepOffset = originalStepOffset;
+        //     ySpeed = -0.5f;
 
-            if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
-            {
-                ySpeed = jumpSpeed;
-                jumpButtonPressedTime = null;
-                lastGroundedTime = null;
-            }
-        }
-        else
-        {
-            characterController.stepOffset = 0;
-        }
+        //     if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
+        //     {
+        //         ySpeed = jumpSpeed;
+        //         jumpButtonPressedTime = null;
+        //         lastGroundedTime = null;
+        //     }
+        // }
+        // else
+        // {
+        //     characterController.stepOffset = 0;
+        // }
 
-        Vector3 velocity = movementDirection * speed;
-        velocity.y = ySpeed;
+        // Vector3 velocity = movementDirection * speed;
+        // velocity.y = ySpeed;
 
-        characterController.Move(velocity * Time.deltaTime);
+        // characterController.Move(velocity * Time.deltaTime);
 
-        if (movementDirection != Vector3.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+        // if (movementDirection != Vector3.zero)
+        // {
+        //     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-        }
-        else
-        {
-            animator.SetBool("IsMoving", false);
-        }
+        //     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        // }
     }
 }
