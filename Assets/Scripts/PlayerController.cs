@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
 
     [Range(0, 100)]
     public float JetpackFuel = 100f;
+
+    public Transform spaceship;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,4 +24,27 @@ public class PlayerController : MonoBehaviour
     {
         
     }
+
+    public void CollectItem(string name) {
+        // Add 10 to health
+        Health += 10;
+        // Add 10 to jetpack
+        JetpackFuel += 10;
+
+        Debug.Log("Collected " + name);
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        Debug.Log("Collided with " + other.gameObject.name);
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        // If the player collides with a collectible
+        if (other.gameObject.tag == "spaceShipTrigger") {
+                // Move the spaceship object
+                
+        }
+    }
+
+
 }
