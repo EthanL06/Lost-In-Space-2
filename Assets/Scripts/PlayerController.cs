@@ -24,6 +24,13 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void UseJetpack(float amount) {
+        JetpackFuel -= amount;
+        if (JetpackFuel < 0) {
+            JetpackFuel = 0;
+        }
+    }
+    
     public void CollectItem(string name) {
         // Add 10 to health
         Health += 10;

@@ -11,11 +11,12 @@ public class ThirdPersonMovement : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
-    public ParticleSystem jetpack;
+    public ParticleSystem jetpackParticles;
+    public PlayerController player;
     float turnSmoothVelocity;
-    float velocityY;
+    float velocityY = 0;
     private Animator animator;
-
+    
     private void Start() {
         animator = GetComponent<Animator>();
     }
@@ -33,11 +34,16 @@ public class ThirdPersonMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            inputMagnitude /= 2;
+            inputMagnitude *= 2f;
         }
 
-        animator.SetFloat("Input Magnitude", inputMagnitude, 0.05f, Time.deltaTime);
-
+        if (controller.isGrounded) {
+            // velocityY = 0f;
+            animator.SetFloat("Input Magnitude", inputMagnitude, 0.05f, Time.deltaTime);
+        } else {
+            animator.SetFloat("Input Magnitude", 0f, 0.05f, Time.deltaTime);
+        }
+        
         if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
@@ -55,11 +61,12 @@ public class ThirdPersonMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.E)) {
+        if (player.JetpackFuel > 0 && Input.GetKey(KeyCode.E)) {
             velocityY = 2f;
-            jetpack.Play();
+            player.UseJetpack(0.1f);
+            jetpackParticles.Play();
         } else {
-            jetpack.Stop();
+            jetpackParticles.Stop();
         }
 
         if (controller.isGrounded && Input.GetButtonDown("Jump"))
@@ -68,7 +75,14 @@ public class ThirdPersonMovement : MonoBehaviour
             velocityY = jumpVelocity;
         } 
 
+        if (controller.isGrounded && velocityY < 0) {
+            velocityY = -2f;
+        }
+
+
+        
         velocityY += gravity * Time.deltaTime;
+        Debug.Log(velocityY + " " + controller.isGrounded);
         controller.Move(Vector3.up * velocityY * Time.deltaTime);
     }
 

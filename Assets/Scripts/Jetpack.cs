@@ -12,7 +12,8 @@ public class Jetpack : MonoBehaviour
 
     void Update()
     {
+        // If the player is holding E, 
         CurrentJetpack = Player.JetpackFuel;
-        JetpackBar.fillAmount = CurrentJetpack / MaxJetpack;
+        JetpackBar.fillAmount = CurrentJetpack / MaxJetpack;    
     }
 }
