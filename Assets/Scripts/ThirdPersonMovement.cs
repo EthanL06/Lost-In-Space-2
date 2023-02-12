@@ -82,7 +82,6 @@ public class ThirdPersonMovement : MonoBehaviour
 
         
         velocityY += gravity * Time.deltaTime;
-        Debug.Log(velocityY + " " + controller.isGrounded);
         controller.Move(Vector3.up * velocityY * Time.deltaTime);
     }
 

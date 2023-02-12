@@ -17,9 +17,20 @@ public class Health : MonoBehaviour
         
     }
 
+    public void TakeDamage(float damage)
+    {
+        Player.Health -= damage;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (Player.Health <= 0)
+        {
+            Player.Health = 0;
+            
+        }
+
         CurrentHealth = Player.Health;
         HealthBar.fillAmount = CurrentHealth / MaxHealth;
     }
