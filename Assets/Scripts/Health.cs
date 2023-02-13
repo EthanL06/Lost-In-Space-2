@@ -28,7 +28,6 @@ public class Health : MonoBehaviour
         if (Player.Health <= 0)
         {
             Player.Health = 0;
-            
         }
 
         CurrentHealth = Player.Health;

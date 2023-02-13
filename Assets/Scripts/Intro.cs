@@ -29,23 +29,23 @@ public class Intro : MonoBehaviour
 
 
     IEnumerator StopDialogue() {
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(4);
         dialogue.StopDialogue();
     }
    
     IEnumerator Cutscene() {
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(10);
         // Camera moves to player
         player.SetActive(true);
         player.GetComponent<ThirdPersonMovement>().enabled = false;
         freelook.Follow = player.GetComponent<Transform>();
         freelook.LookAt = player.GetComponent<Transform>();
 
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(2);
         dialogue.PlayLines(new string[] { "You: Ouch... that hurts. Where am I? And who is THAT?"});
 
         
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(8);
         dialogue.StopDialogue();
         player.GetComponent<ThirdPersonMovement>().enabled = true;
         alien.SetActive(true);

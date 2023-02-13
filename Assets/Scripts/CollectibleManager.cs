@@ -18,6 +18,16 @@ public class CollectibleManager : MonoBehaviour
         
     }
 
+    public bool allCollected {
+        get {
+            foreach (Transform collectible in collectiblePositions) {
+                if (collectible != null)
+                    return false;
+            }
+            return true;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
