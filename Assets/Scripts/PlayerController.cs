@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void RefuelJetpack() {
+        JetpackFuel = 100;
+    }
+
     public void UseJetpack(float amount) {
         JetpackFuel -= amount;
         if (JetpackFuel < 0) {
