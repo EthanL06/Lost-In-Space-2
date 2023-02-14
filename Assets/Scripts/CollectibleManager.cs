@@ -11,6 +11,7 @@ public class CollectibleManager : MonoBehaviour
     public Transform shipPosition;
     public Transform playerPosition;
     private float distance;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,10 @@ public class CollectibleManager : MonoBehaviour
             }
             return true;
         }
+    }
+
+    public void PlaySuccsess() {
+        audioSource.Play();
     }
 
     // Update is called once per frame

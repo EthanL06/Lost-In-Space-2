@@ -14,15 +14,19 @@ public class CheckpointManager : MonoBehaviour
             Debug.Log("Resetting to checkpoint");
             Debug.Log(currentCheckpoint.position);
             // Get the character controller component
-            CharacterController controller = player.GetComponent<CharacterController>();
-            controller.enabled = false;
-            transform.position = currentCheckpoint.position;
-            controller.enabled = true;
+            ResetToCheckpoint();
         
         }
+    }
 
-                   
-            
+    public void ResetToCheckpoint() {
+        CharacterController controller = player.GetComponent<CharacterController>();
+        player.gameObject.GetComponent<Health>().ResetHealth();
+        player.gameObject.GetComponent<PlayerController>().RefuelJetpack();
+        player.gameObject.GetComponent<ThirdPersonMovement>().enabled = true;
+        controller.enabled = false;
+        transform.position = currentCheckpoint.position;
+        controller.enabled = true;
     }
     
 

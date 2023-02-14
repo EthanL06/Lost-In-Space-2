@@ -11,8 +11,9 @@ public class Intro : MonoBehaviour
     public GameObject alien;
     public Dialogue dialogue;
     public Animator shipAnimator;
-    public Canvas playerUI;
 
+    public Audio audio;
+    public AudioSource backgroundMusic;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,9 @@ public class Intro : MonoBehaviour
     }
    
     IEnumerator Cutscene() {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(8);
+        audio.PlayFire();
+        yield return new WaitForSeconds(2);
         // Camera moves to player
         player.SetActive(true);
         player.GetComponent<ThirdPersonMovement>().enabled = false;
@@ -49,5 +52,8 @@ public class Intro : MonoBehaviour
         dialogue.StopDialogue();
         player.GetComponent<ThirdPersonMovement>().enabled = true;
         alien.SetActive(true);
+        // Activate the background music component
+        backgroundMusic.enabled = true;
+        backgroundMusic.Play();
     }
 }
