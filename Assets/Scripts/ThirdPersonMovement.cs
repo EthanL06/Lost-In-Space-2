@@ -63,7 +63,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
         if (player.JetpackFuel > 0 && Input.GetKey(KeyCode.E)) {
             velocityY = 2f;
-            player.UseJetpack(0.8f);
+            player.UseJetpack(0.5f);
             jetpackParticles.Play();
         } else {
             jetpackParticles.Stop();
