@@ -11,6 +11,7 @@ public class End : MonoBehaviour
     public Dialogue dialogue;
     public Canvas playerUI;
     public Animator shipAnimator;
+    public CollectibleManager collectibleManager;
 
     private IEnumerator Play() {
         dialogue.StopDialogue();
@@ -33,7 +34,7 @@ public class End : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player") {
+        if (other.gameObject.tag == "Player" && collectibleManager.allCollected) {
             Debug.Log("Player entered trigger");
             StartCoroutine("Play");
         }
