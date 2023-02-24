@@ -565,7 +565,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936258540}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24763ab45c1324a4e80ad22c0048a1b4, type: 3}
   m_Name: 
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936258540}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfba4cbef78023d49b949f402a945936, type: 3}
   m_Name: 
@@ -631,4 +631,5 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   gravity: -9.81
   jumpHeight: 3
-  jetpack: {fileID: 0}
+  jetpackParticles: {fileID: 0}
+  player: {fileID: 0}
